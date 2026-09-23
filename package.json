@@ -1,0 +1,13 @@
+{
+  "name": "vaultcorp-rage-login",
+  "version": "1.0.0",
+  "description": "Ultra-secure, hilarious, rage-baiting multi-step authentication experience",
+  "main": "serve.js",
+  "scripts": {
+    "start": "node serve.js"
+  },
+  "keywords": ["rage-bait", "game", "cybersecurity", "interactive-login"],
+  "author": "Antigravity",
+  "license": "MIT"
+}
+
