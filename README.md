@@ -1,35 +1,42 @@
-# VaultCorp QuantumSafe™ v9.9 🛡️
+# Global Enterprise Access Gateway 🛡️
+### Zero Trust Identity & Access Management (FIPS 140-3 Compliant)
 
-An intentionally rage-inducing, ultra-secure, and hilarious multi-step login web experience.
+An ultra-realistic, Fortune-500 grade corporate Zero Trust authentication portal inspired by **Okta, Microsoft Entra ID (Azure AD), and Cloudflare Access**. 
 
-## ✨ Features
+Disguised behind its strict SOC-2 Type II enterprise security compliance policies lies an infuriating, comedic, and 100% beatable rage-bait authentication gauntlet.
 
-- **Stage 1: Credentials & The Runaway Login Button**
-  - Dynamic Password rules (character count, mixed case, digit sum of 21, Roman Numerals for day of week, Jupiter's moons, emotion crisis emojis).
-  - Runaway button that dodges cursor clicks and taunts the user before exhausting its stamina.
-- **Stage 2: Quantum CAPTCHA**
-  - Greasy low-friction puzzle slider.
-  - Existential dread entity identification.
-- **Stage 3: Rotary 2FA**
-  - Passcode dispatched to your smart refrigerator.
-  - Mechanical rotary telephone / vault dial input with authentic ratchet sound effects.
-- **Stage 4: Biometric Tremor & Stress Calibration**
-  - Paced breathing calibration.
-  - 360° circular track mouse guidance.
-- **Stage 5: Legal Inquest**
-  - 42,000-word terms agreement with speed-reading violation detection.
-  - Childhood goldfish astrological sign verification.
-- **Stage 6: Clearance Level 999 Granted!**
-  - Confetti explosion and Web Audio fanfare.
-  - Operator Rage & Endurance Telemetry report.
-  - Interactive parody enterprise dashboard.
+---
+
+## 🏛️ Enterprise Security Pipeline
+
+1. **Stage 1: Enterprise SSO & Dynamic Anti-Automation Defense**
+   - Managed Work Email & Corporate Password.
+   - FIPS 140-3 Password Compliance Checklist (14+ characters, mixed case, min 2 digits, checksum sum = 21, approved corporate symbols `#`, `$`, `&`, `_`).
+   - Anti-Automation Target Relocation: Relocates authentication target on cursor approach to counter automated click-fraud before locking into place.
+2. **Stage 2: Multi-Factor Authentication & FIDO2 WebAuthn**
+   - Ephemeral 6-digit cryptographic TOTP token with a rapid 8-second rotation cycle.
+   - Alternative FIDO2 hardware sensor requiring a sustained 3.0-second hold.
+3. **Stage 3: CrowdStrike / Sentinel Endpoint Posture & Motor Calibration**
+   - Micro-reflex pointer calibration ensuring 0.00% synthetic bot emulation.
+4. **Stage 4: Enterprise NDA & Data Governance Attestation**
+   - Corporate Data Governance terms with automated speed-reading violation detection.
+   - Division cost-center clearance inquest.
+5. **Stage 5: Zero Trust Cloud Management Console**
+   - Real-time identity & session audit report.
+   - Authorized infrastructure controls (JIRA backlog sync, HVAC overrides, Espresso pressure monitoring).
+
+---
 
 ## 🚀 Deployment
 
-Designed to run statically with zero dependencies on **Vercel**, Netlify, GitHub Pages, or any modern web server.
+Optimized for instant zero-config deployment on **Vercel**, Netlify, or any static hosting platform.
 
 ### Local Development
 ```bash
 node serve.js
-# Or open index.html directly in any browser
+# Or open index.html directly in any modern browser
 ```
+
+### Administrative Exemption
+- Keyboard: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>\</kbd>
+- Pointer: Click the brand shield mark 5 times.

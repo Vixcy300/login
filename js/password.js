@@ -1,81 +1,50 @@
 /**
- * VaultCorp Dynamic Password Game Validator
- * Escalating absurd rules, live sum counter, and real-time audio feedback.
+ * Enterprise Password Compliance Engine (FIPS 140-3 Standard)
+ * Clean checklist UI with real-time checksum evaluation.
  */
-class PasswordValidator {
-  constructor(inputEl, rulesContainerEl, onAllPassed) {
+class PasswordCompliance {
+  constructor(inputEl, checklistContainerEl, onComplianceMet) {
     this.input = inputEl;
-    this.container = rulesContainerEl;
-    this.onAllPassed = onAllPassed;
-
-    // Determine current day in Roman Numerals (1 = Monday, ..., 7 = Sunday)
-    const dayIndex = new Date().getDay(); // 0 = Sun, 1 = Mon ...
-    const romanDays = ['VII', 'I', 'II', 'III', 'IV', 'V', 'VI'];
-    this.todayRoman = romanDays[dayIndex];
-    this.dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    this.todayName = this.dayNames[dayIndex];
-
-    this.moons = ['Io', 'Europa', 'Ganymede', 'Callisto'];
-    this.emojis = ['🤬', '🤡', '🚀', '💀', '☕'];
+    this.container = checklistContainerEl;
+    this.onComplianceMet = onComplianceMet;
 
     this.rules = [
       {
-        id: 'rule-length',
-        title: 'Rule 1: Length Requirement',
-        desc: 'Your password must be at least 8 characters long.',
-        check: (pw) => pw.length >= 8
+        id: 'length',
+        label: 'Minimum 14 characters in length',
+        check: (pw) => pw.length >= 14
       },
       {
-        id: 'rule-case',
-        title: 'Rule 2: Polarity Balance',
-        desc: 'Must include at least one UPPERCASE and one lowercase letter.',
+        id: 'casing',
+        label: 'Mixed case composition (Uppercase & Lowercase)',
         check: (pw) => /[a-z]/.test(pw) && /[A-Z]/.test(pw)
       },
       {
-        id: 'rule-number',
-        title: 'Rule 3: Mathematical Integrity',
-        desc: 'Your password must contain at least one numeric digit.',
-        check: (pw) => /\d/.test(pw)
+        id: 'digits',
+        label: 'Minimum two numeric digits',
+        check: (pw) => (pw.match(/\d/g) || []).length >= 2
       },
       {
-        id: 'rule-sum',
-        title: 'Rule 4: The Casino Rule (Blackjack)',
-        desc: `The numeric digits in your password must sum up to exactly 21.`,
-        getDynamicDesc: (pw) => {
+        id: 'checksum',
+        label: 'FIPS 140-3 Checksum: Sum of all digits must equal 21',
+        getDynamicLabel: (pw) => {
           const digits = (pw.match(/\d/g) || []).map(Number);
           const sum = digits.reduce((a, b) => a + b, 0);
-          return `The numeric digits in your password must sum up to exactly 21. (Current digit sum: <strong style="color: ${sum === 21 ? '#10b981' : '#f59e0b'}">${sum}</strong>)`;
+          return `FIPS 140-3 Checksum: Sum of digits must equal 21 (Current: ${sum})`;
         },
         check: (pw) => {
           const digits = (pw.match(/\d/g) || []).map(Number);
-          const sum = digits.reduce((a, b) => a + b, 0);
-          return sum === 21;
+          return digits.reduce((a, b) => a + b, 0) === 21;
         }
       },
       {
-        id: 'rule-roman',
-        title: 'Rule 5: Ancient Roman Clock Synchronization',
-        desc: `Must contain today's day of week (${this.todayName}) in Roman Numerals: "${this.todayRoman}".`,
-        check: (pw) => pw.includes(this.todayRoman)
-      },
-      {
-        id: 'rule-moon',
-        title: 'Rule 6: Celestial Orbit Alignment',
-        desc: `Must contain the name of one of Jupiter's Galilean moons: (Io, Europa, Ganymede, Callisto).`,
-        check: (pw) => this.moons.some(moon => pw.includes(moon))
-      },
-      {
-        id: 'rule-emoji',
-        title: 'Rule 7: Emotional Distress Telemetry',
-        desc: `Must contain an approved state-of-mind emoji: 🤬, 🤡, 🚀, 💀, or ☕.`,
-        check: (pw) => this.emojis.some(emoji => pw.includes(emoji))
+        id: 'symbols',
+        label: 'Contains approved corporate token symbols (#, $, &, _)',
+        check: (pw) => /[#$&_]/.test(pw)
       }
     ];
 
-    this.visibleRuleCount = 1;
-    this.passedStates = {};
     this.allValid = false;
-
     this.init();
   }
 
@@ -85,81 +54,52 @@ class PasswordValidator {
   }
 
   render() {
-    this.container.innerHTML = '';
-    
-    // Render rules up to current visibleRuleCount
-    for (let i = 0; i < Math.min(this.visibleRuleCount, this.rules.length); i++) {
-      const rule = this.rules[i];
-      const isPassed = this.passedStates[rule.id] || false;
+    this.container.innerHTML = `
+      <div class="checklist-header">
+        <span>Corporate Policy Requirements</span>
+        <span>Standard ISO-27001</span>
+      </div>
+    `;
 
-      const ruleEl = document.createElement('div');
-      ruleEl.className = `rule-card ${isPassed ? 'rule-passed' : 'rule-failed'}`;
-      ruleEl.id = rule.id;
+    const pw = this.input.value;
+    this.rules.forEach((rule) => {
+      const isValid = rule.check(pw);
+      const labelText = rule.getDynamicLabel ? rule.getDynamicLabel(pw) : rule.label;
 
-      const descText = rule.getDynamicDesc ? rule.getDynamicDesc(this.input.value) : rule.desc;
-
-      ruleEl.innerHTML = `
-        <div class="rule-header">
-          <span class="rule-icon">${isPassed ? '✅' : '❌'}</span>
-          <span class="rule-title">${rule.title}</span>
-        </div>
-        <div class="rule-body">${descText}</div>
+      const item = document.createElement('div');
+      item.className = `checklist-item ${isValid ? 'valid' : 'invalid'}`;
+      item.innerHTML = `
+        <span class="checklist-icon">${isValid ? '●' : '○'}</span>
+        <span>${labelText}</span>
       `;
-      this.container.appendChild(ruleEl);
-    }
+      this.container.appendChild(item);
+    });
   }
 
   validate() {
     const pw = this.input.value;
-    let allCurrentPassed = true;
-    let newRuleUnlocked = false;
-
-    for (let i = 0; i < this.visibleRuleCount; i++) {
-      const rule = this.rules[i];
-      const wasPassed = this.passedStates[rule.id];
-      const nowPassed = rule.check(pw);
-      this.passedStates[rule.id] = nowPassed;
-
-      if (!nowPassed) {
-        allCurrentPassed = false;
-      }
-
-      // Check if this rule specifically changed to passed
-      if (!wasPassed && nowPassed) {
-        if (window.soundEngine) window.soundEngine.click();
-      }
-    }
-
-    // If all current visible rules are satisfied, unlock the next rule!
-    if (allCurrentPassed && this.visibleRuleCount < this.rules.length) {
-      this.visibleRuleCount++;
-      newRuleUnlocked = true;
-      if (window.soundEngine) window.soundEngine.ruleDing();
-    }
+    const isNowValid = this.rules.every(r => r.check(pw));
 
     this.render();
 
-    // Check if ALL 7 rules are satisfied
-    const totalPassed = this.rules.every(r => r.check(pw));
-    if (totalPassed && !this.allValid) {
+    if (isNowValid && !this.allValid) {
       this.allValid = true;
-      if (window.soundEngine) window.soundEngine.success();
-      if (typeof this.onAllPassed === 'function') {
-        this.onAllPassed(true);
+      if (window.soundEngine) window.soundEngine.click();
+      if (typeof this.onComplianceMet === 'function') {
+        this.onComplianceMet(true);
       }
-    } else if (!totalPassed && this.allValid) {
+    } else if (!isNowValid && this.allValid) {
       this.allValid = false;
-      if (typeof this.onAllPassed === 'function') {
-        this.onAllPassed(false);
+      if (typeof this.onComplianceMet === 'function') {
+        this.onComplianceMet(false);
       }
     }
   }
 
-  // Helper autofill for testing or hint
   suggestCompliantPassword() {
-    return `Secure993${this.todayRoman}Europa🚀`;
+    // 14+ chars, upper, lower, digits summing to 21 (e.g., 9+8+4 = 21), symbol #
+    return 'Corporate984#Security';
   }
 }
 
-window.PasswordValidator = PasswordValidator;
-
+window.PasswordCompliance = PasswordCompliance;

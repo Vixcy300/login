@@ -1,8 +1,8 @@
 /**
- * VaultCorp Main Application Controller
- * Manages global telemetry, step transitions, rage meter, and Easter eggs.
+ * Enterprise Application Controller
+ * Manages Zero Trust authentication flow, security telemetry, and pipeline progression.
  */
-class VaultApp {
+class EnterpriseApp {
   constructor() {
     this.state = {
       currentStep: 1,
@@ -11,8 +11,7 @@ class VaultApp {
       dodgeCount: 0,
       missedClicks: 0,
       mouseDistance: 0,
-      rageLevel: 10,
-      shieldClicks: 0
+      logoClicks: 0
     };
 
     window.vaultState = this.state;
@@ -24,7 +23,7 @@ class VaultApp {
   init() {
     this.initMouseTelemetry();
     this.initAudioControls();
-    this.initCheatShortcuts();
+    this.initBypassShortcuts();
     this.initStep1();
   }
 
@@ -36,30 +35,6 @@ class VaultApp {
       }
       this.lastMousePos = { x: e.clientX, y: e.clientY };
     });
-
-    this.state.addRage = (amount) => {
-      this.state.rageLevel = Math.min(100, this.state.rageLevel + amount);
-      this.updateRageDisplay();
-    };
-
-    this.updateRageDisplay();
-  }
-
-  updateRageDisplay() {
-    const bar = document.getElementById('rage-progress-bar');
-    const label = document.getElementById('rage-score-label');
-    if (bar && label) {
-      bar.style.width = `${this.state.rageLevel}%`;
-      label.innerText = `${Math.round(this.state.rageLevel)}%`;
-
-      if (this.state.rageLevel > 75) {
-        bar.style.background = 'linear-gradient(90deg, #f59e0b, #ef4444)';
-      } else if (this.state.rageLevel > 40) {
-        bar.style.background = 'linear-gradient(90deg, #38bdf8, #f59e0b)';
-      } else {
-        bar.style.background = 'linear-gradient(90deg, #10b981, #38bdf8)';
-      }
-    }
   }
 
   initAudioControls() {
@@ -67,30 +42,29 @@ class VaultApp {
     if (audioBtn) {
       audioBtn.addEventListener('click', () => {
         const isMuted = window.soundEngine.toggleMute();
-        audioBtn.innerHTML = isMuted ? '🔇 Audio Muted' : '🔊 Audio ON';
-        audioBtn.classList.toggle('muted', isMuted);
+        audioBtn.innerHTML = isMuted ? 'Muted' : 'System Audio';
       });
     }
   }
 
-  initCheatShortcuts() {
-    // Secret shortcut: Ctrl + Shift + \
+  initBypassShortcuts() {
+    // Secret developer shortcut: Ctrl + Shift + \
     window.addEventListener('keydown', (e) => {
       if (e.ctrlKey && e.shiftKey && (e.key === '|' || e.key === '\\')) {
         e.preventDefault();
-        this.bypassCurrentStep("Developer Override Activated (Ctrl+Shift+\\)");
+        this.bypassCurrentStep("Administrative Policy Exemption Invoked");
       }
     });
 
-    // Secret shortcut: Click shield 5 times
-    const shield = document.getElementById('vault-shield-icon');
-    if (shield) {
-      shield.addEventListener('click', () => {
-        this.state.shieldClicks++;
+    // Secret shortcut: Click brand logo mark 5 times
+    const logo = document.getElementById('brand-logo-mark');
+    if (logo) {
+      logo.addEventListener('click', () => {
+        this.state.logoClicks++;
         if (window.soundEngine) window.soundEngine.click();
-        if (this.state.shieldClicks >= 5) {
-          this.state.shieldClicks = 0;
-          this.bypassCurrentStep("Executive Shield Override Activated");
+        if (this.state.logoClicks >= 5) {
+          this.state.logoClicks = 0;
+          this.bypassCurrentStep("Executive Credential Override Activated");
         }
       });
     }
@@ -98,9 +72,9 @@ class VaultApp {
 
   bypassCurrentStep(reason) {
     if (window.soundEngine) window.soundEngine.success();
-    const banner = document.getElementById('global-alert');
+    const banner = document.getElementById('security-alert-banner');
     if (banner) {
-      banner.innerText = `⚡ ${reason}`;
+      banner.innerText = `[AUDIT OVERRIDE] ${reason}`;
       banner.style.display = 'block';
       setTimeout(() => banner.style.display = 'none', 3000);
     }
@@ -109,7 +83,7 @@ class VaultApp {
 
   goToStep(stepNumber) {
     this.state.currentStep = stepNumber;
-    this.updateStepIndicator();
+    this.updatePipelineIndicator();
 
     const mainContainer = document.getElementById('step-content-area');
     mainContainer.innerHTML = '';
@@ -117,25 +91,25 @@ class VaultApp {
     if (stepNumber === 1) {
       this.initStep1();
     } else if (stepNumber === 2) {
-      new window.QuantumCaptcha(mainContainer, () => this.goToStep(3));
+      new window.EnterpriseMFA(mainContainer, () => this.goToStep(3));
     } else if (stepNumber === 3) {
-      new window.RotaryMFA(mainContainer, () => this.goToStep(4));
+      new window.DevicePosture(mainContainer, () => this.goToStep(4));
     } else if (stepNumber === 4) {
-      new window.TremorCalibration(mainContainer, () => this.goToStep(5));
+      new window.GovernanceAttestation(mainContainer, () => this.goToStep(5));
     } else if (stepNumber === 5) {
-      new window.FinalAuthorizationAndDashboard(mainContainer, () => {});
+      new window.EnterpriseConsole(mainContainer);
     }
   }
 
-  updateStepIndicator() {
+  updatePipelineIndicator() {
     for (let i = 1; i <= this.state.totalSteps; i++) {
-      const stepItem = document.getElementById(`step-pill-${i}`);
-      if (stepItem) {
-        stepItem.classList.remove('active', 'completed');
+      const stepEl = document.getElementById(`pipe-step-${i}`);
+      if (stepEl) {
+        stepEl.classList.remove('active', 'completed');
         if (i === this.state.currentStep) {
-          stepItem.classList.add('active');
+          stepEl.classList.add('active');
         } else if (i < this.state.currentStep) {
-          stepItem.classList.add('completed');
+          stepEl.classList.add('completed');
         }
       }
     }
@@ -144,74 +118,71 @@ class VaultApp {
   initStep1() {
     const container = document.getElementById('step-content-area');
     container.innerHTML = `
-      <div class="credentials-card">
-        <div class="step-badge">STAGE 1: CREDENTIALS & FLEEING AUTHENTICATOR</div>
-        
-        <div class="form-group">
-          <label class="form-label" for="username-input">
-            Quantum Corporate ID:
-          </label>
-          <input type="text" id="username-input" class="vault-input" placeholder="e.g. employee.4092@vaultcorp.com" value="user@vaultcorp.com" autocomplete="off" />
+      <div>
+        <div class="card-header-badge">GLOBAL ENTERPRISE SSO • AZURE AD FEDERATED</div>
+        <h2 class="card-title">Sign in to Enterprise Account</h2>
+        <p class="card-subtitle">
+          Enter your managed enterprise identity credentials to request session clearance.
+        </p>
+
+        <div class="field-group">
+          <label class="field-label" for="work-email">Work Email</label>
+          <input type="email" id="work-email" class="enterprise-input" value="alex.mercer@enterprise-global.com" autocomplete="off" />
         </div>
 
-        <div class="form-group">
-          <div style="display: flex; justify-content: space-between; align-items: baseline;">
-            <label class="form-label" for="password-input">
-              Dynamic Fort Knox Password:
-            </label>
-            <button type="button" class="btn-link" id="pw-hint-btn">💡 Hint Password</button>
+        <div class="field-group">
+          <div class="field-label-row">
+            <label class="field-label" for="work-password">Enterprise Password</label>
+            <button type="button" class="btn-text" id="auto-fill-pw-btn">Auto-generate compliant password</button>
           </div>
-          <input type="text" id="password-input" class="vault-input" placeholder="Enter password to reveal security rules..." autocomplete="off" />
+          <input type="password" id="work-password" class="enterprise-input" placeholder="Enter corporate password..." autocomplete="off" />
         </div>
 
-        <!-- The Password Game Rules List -->
-        <div class="rules-container" id="password-rules-box"></div>
+        <!-- FIPS Password Compliance Checklist -->
+        <div class="compliance-checklist" id="pw-checklist"></div>
 
-        <div id="runaway-status" class="runaway-status-text"></div>
-
-        <!-- The Runaway Arena for the Button -->
-        <div class="runaway-arena" id="runaway-arena">
-          <button type="button" class="btn btn-primary runaway-btn" id="runaway-login-btn" disabled>
-            🔒 Unlock Quantum Session
+        <!-- Anti-Automation Target Relocation Arena -->
+        <div class="anti-bot-container" id="anti-bot-arena">
+          <button type="button" class="btn-primary anti-bot-btn" id="sso-submit-btn" disabled>
+            Authenticate SSO Identity
           </button>
         </div>
 
-        <div class="credentials-footer">
-          <span>Missed/Whiffed Clicks: <strong id="missed-clicks-counter">0</strong></span>
-          <span style="color:#64748b;">(Pro-tip: Button tires after 7 dodges)</span>
+        <div id="audit-notice-text" class="audit-notice"></div>
+
+        <div class="telemetry-status-box">
+          <div class="status-dot"></div>
+          <span>SOC 2 Type II Encrypted Gateway • Session Telemetry Enabled</span>
         </div>
       </div>
     `;
 
-    const pwInput = document.getElementById('password-input');
-    const rulesBox = document.getElementById('password-rules-box');
-    const runawayBtn = document.getElementById('runaway-login-btn');
-    const arena = document.getElementById('runaway-arena');
-    const hintBtn = document.getElementById('pw-hint-btn');
+    const pwInput = document.getElementById('work-password');
+    const checklistBox = document.getElementById('pw-checklist');
+    const submitBtn = document.getElementById('sso-submit-btn');
+    const arena = document.getElementById('anti-bot-arena');
+    const autoFillBtn = document.getElementById('auto-fill-pw-btn');
 
-    let runawayInstance = null;
+    let buttonController = null;
 
-    const validator = new window.PasswordValidator(pwInput, rulesBox, (isAllPassed) => {
-      if (isAllPassed) {
-        runawayBtn.disabled = false;
-        runawayBtn.innerText = '🏃 Log In (Catch Me If You Can!)';
-        runawayBtn.classList.add('ready-to-chase');
+    const validator = new window.PasswordCompliance(pwInput, checklistBox, (isCompliant) => {
+      if (isCompliant) {
+        submitBtn.disabled = false;
+        submitBtn.innerText = 'Authenticate Identity (Verify Cadence)';
 
-        if (!runawayInstance) {
-          runawayInstance = new window.RunawayButton(runawayBtn, arena, () => {
+        if (!buttonController) {
+          buttonController = new window.AntiAutomationButton(submitBtn, arena, () => {
             this.goToStep(2);
           });
         }
       } else {
-        runawayBtn.disabled = true;
-        runawayBtn.innerText = '🔒 Complete All Password Rules to Activate';
-        runawayBtn.classList.remove('ready-to-chase');
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Authenticate SSO Identity';
       }
     });
 
-    hintBtn.addEventListener('click', () => {
-      const suggested = validator.suggestCompliantPassword();
-      pwInput.value = suggested;
+    autoFillBtn.addEventListener('click', () => {
+      pwInput.value = validator.suggestCompliantPassword();
       validator.validate();
       if (window.soundEngine) window.soundEngine.click();
     });
@@ -219,6 +190,5 @@ class VaultApp {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  window.vaultApp = new VaultApp();
+  window.enterpriseApp = new EnterpriseApp();
 });
-

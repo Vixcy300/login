@@ -3,63 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VaultCorp QuantumSafe™ v9.9 - Impossible Multi-Factor Authentication</title>
+  <title>Enterprise Access Gateway | Zero Trust Authentication</title>
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/components.css">
   <link rel="stylesheet" href="styles/steps.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20width=%22100%22%20height=%22100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%232563eb%22 stroke-width=%222%22><path d=%22M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z%22/></svg>">
 </head>
 <body>
 
-  <!-- Floating Alert Banner for Overrides & Notifications -->
-  <div id="global-alert" class="global-alert"></div>
+  <!-- Administrative Override Notice -->
+  <div id="security-alert-banner" class="security-alert-banner"></div>
 
-  <!-- Header -->
-  <header class="vault-header">
-    <div class="vault-brand" id="vault-brand-btn" title="VaultCorp Enterprise Security (Click 5 times for emergency override)">
-      <div class="brand-shield" id="vault-shield-icon">🛡️</div>
-      <div>
-        <div class="brand-title">VaultCorp QuantumSafe™</div>
-        <div class="brand-sub">Enterprise Security Level 9.9</div>
+  <!-- Enterprise Header -->
+  <header class="enterprise-header">
+    <div class="brand-identity" id="brand-logo-mark" title="Global Security Gateway (Internal Telemetry: Click 5x for Admin Bypass)">
+      <div class="brand-logo-mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <div class="brand-text-lockup">
+        <div class="brand-name">Global Enterprise Gateway</div>
+        <div class="brand-subtext">Zero Trust Access Controller</div>
       </div>
     </div>
-    <div class="header-controls">
-      <button type="button" class="audio-btn" id="audio-toggle-btn">🔊 Audio ON</button>
+
+    <div class="header-meta-group">
+      <div class="compliance-badges">
+        <span class="compliance-tag">SOC 2 Type II</span>
+        <span class="compliance-tag">FIPS 140-3</span>
+      </div>
+      <button type="button" class="control-btn" id="audio-toggle-btn">
+        System Audio
+      </button>
     </div>
   </header>
 
-  <!-- Real-time Rage / Agitation Meter -->
-  <div class="rage-meter-container">
-    <div class="rage-meter-header">
-      <span class="rage-meter-title">⚡ Operator Frustration Telemetry</span>
-      <span class="rage-score" id="rage-score-label">10%</span>
-    </div>
-    <div class="rage-track">
-      <div class="rage-bar" id="rage-progress-bar"></div>
-    </div>
-  </div>
-
-  <!-- Step Progress Indicator -->
-  <nav class="steps-nav" aria-label="Authentication Steps">
-    <div class="step-pill active" id="step-pill-1">1. Credentials</div>
-    <div class="step-pill" id="step-pill-2">2. CAPTCHA</div>
-    <div class="step-pill" id="step-pill-3">3. Rotary 2FA</div>
-    <div class="step-pill" id="step-pill-4">4. Zen Calibrate</div>
-    <div class="step-pill" id="step-pill-5">5. Legal Inquest</div>
-  </nav>
-
   <!-- Main Container -->
-  <main class="app-container">
-    <div class="step-content" id="step-content-area">
-      <!-- Steps loaded dynamically by app.js -->
+  <main class="main-wrapper">
+
+    <!-- Zero Trust Pipeline Stages -->
+    <div class="pipeline-indicator" aria-label="Authentication Pipeline">
+      <div class="pipeline-step active" id="pipe-step-1">
+        <div class="step-number">1</div>
+        <span>Identity</span>
+      </div>
+      <div class="pipeline-separator"></div>
+      <div class="pipeline-step" id="pipe-step-2">
+        <div class="step-number">2</div>
+        <span>MFA</span>
+      </div>
+      <div class="pipeline-separator"></div>
+      <div class="pipeline-step" id="pipe-step-3">
+        <div class="step-number">3</div>
+        <span>Posture</span>
+      </div>
+      <div class="pipeline-separator"></div>
+      <div class="pipeline-step" id="pipe-step-4">
+        <div class="step-number">4</div>
+        <span>Governance</span>
+      </div>
+      <div class="pipeline-separator"></div>
+      <div class="pipeline-step" id="pipe-step-5">
+        <div class="step-number">5</div>
+        <span>Clearance</span>
+      </div>
     </div>
+
+    <!-- Active Card Surface -->
+    <div class="enterprise-card" id="step-content-area">
+      <!-- Injected dynamically by app.js -->
+    </div>
+
   </main>
 
   <!-- Footer -->
-  <footer class="vault-footer">
-    <div>Protected by 4096-bit Quantum Paranoia • All Rights Reserved © VaultCorp Inc.</div>
-    <div style="margin-top: 4px; font-size: 11px; opacity: 0.7;">
-      Having trouble? Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>\</kbd> or click the 🛡️ Shield 5x for Developer Bypass.
+  <footer class="enterprise-footer">
+    <div class="footer-links">
+      <a href="#" onclick="return false;">Corporate Security Policy</a>
+      <a href="#" onclick="return false;">Acceptable Use Standards</a>
+      <a href="#" onclick="return false;">Helpdesk Support</a>
+    </div>
+    <div>Protected by Zero Trust Cryptographic Enclaves • All Rights Reserved © 2026 Enterprise Corp.</div>
+    <div style="font-size: 11px; opacity: 0.6; margin-top: 2px;">
+      Administrative testing shortcut: Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>\</kbd> or click the logo 5x.
     </div>
   </footer>
 
@@ -67,11 +94,10 @@
   <script src="js/sound.js"></script>
   <script src="js/runaway.js"></script>
   <script src="js/password.js"></script>
-  <script src="js/captcha.js"></script>
-  <script src="js/rotary.js"></script>
-  <script src="js/tremor.js"></script>
+  <script src="js/mfa.js"></script>
+  <script src="js/posture.js"></script>
+  <script src="js/governance.js"></script>
   <script src="js/dashboard.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
-
