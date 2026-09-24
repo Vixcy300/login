@@ -1,76 +1,78 @@
-/* Form Field Primitives */
-.field-group {
+/* Technical Form Elements */
+.input-block {
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.field-label-row {
+.input-label-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.field-label {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
-.field-input-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.enterprise-input {
+.cyber-input {
   width: 100%;
-  background: var(--bg-card);
+  background: rgba(3, 7, 18, 0.7);
   border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  color: var(--text-primary);
-  padding: 10px 14px;
+  border-radius: 8px;
+  color: var(--text-main);
+  padding: 12px 14px;
   font-size: 14px;
   font-family: inherit;
   outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: all 0.15s ease;
 }
 
-.enterprise-input:focus {
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 1px var(--border-focus);
+.cyber-input:focus {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+  background: rgba(3, 7, 18, 0.95);
 }
 
-.enterprise-input::placeholder {
-  color: var(--text-tertiary);
-}
-
-.enterprise-select {
-  width: 100%;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+/* SHA-256 Live Hash Visualizer */
+.hash-preview-box {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
   border-radius: 6px;
-  color: var(--text-primary);
-  padding: 10px 14px;
-  font-size: 13px;
-  outline: none;
-  cursor: pointer;
-  font-family: inherit;
+  padding: 8px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  margin-top: 4px;
 }
 
-.enterprise-select:focus {
-  border-color: var(--border-focus);
+.hash-label {
+  font-size: 9px;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 700;
 }
 
-/* Action Buttons */
-.btn-primary {
-  width: 100%;
-  background: var(--accent-blue);
-  color: #ffffff;
-  border: 1px solid transparent;
-  padding: 11px 16px;
-  border-radius: 6px;
+.hash-string {
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 380px;
+}
+
+/* Primary Action Buttons */
+.cyber-btn {
+  background: linear-gradient(135deg, #0284c7, #2563eb);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 20px;
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -78,112 +80,96 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: background-color 0.15s ease, transform 0.1s ease;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+  transition: all 0.15s ease;
   user-select: none;
 }
 
-.btn-primary:not(:disabled):hover {
-  background: var(--accent-blue-hover);
+.cyber-btn:not(:disabled):hover {
+  background: linear-gradient(135deg, #0369a1, #1d4ed8);
+  box-shadow: 0 6px 24px rgba(37, 99, 235, 0.6);
+  transform: translateY(-1px);
 }
 
-.btn-primary:not(:disabled):active {
-  transform: scale(0.99);
-}
-
-.btn-primary:disabled {
-  opacity: 0.5;
+.cyber-btn:disabled {
+  opacity: 0.45;
   cursor: not-allowed;
+  filter: grayscale(0.5);
+  box-shadow: none;
 }
 
-.btn-secondary {
-  background: transparent;
+.cyber-btn-outline {
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-subtle);
-  color: var(--text-secondary);
+  color: var(--text-muted);
   padding: 8px 14px;
   border-radius: 6px;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 12px;
+  font-family: var(--font-mono);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-primary);
+.cyber-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
   border-color: var(--border-strong);
 }
 
-.btn-text {
-  background: none;
-  border: none;
-  color: var(--accent-blue);
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  padding: 0;
-  text-decoration: none;
-}
-
-.btn-text:hover {
-  text-decoration: underline;
-}
-
-/* Status Chips & Badges */
-.card-header-badge {
+/* Card Header */
+.card-protocol-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--accent-cyan);
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  color: var(--accent-blue);
-  background: rgba(37, 99, 235, 0.1);
-  border: 1px solid rgba(37, 99, 235, 0.2);
-  padding: 3px 10px;
-  border-radius: 4px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
-.card-title {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-  color: var(--text-primary);
+.card-heading {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  color: #fff;
   margin-bottom: 6px;
 }
 
-.card-subtitle {
+.card-description {
   font-size: 13px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   line-height: 1.5;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
-.telemetry-status-box {
-  margin-top: 14px;
-  padding: 10px 14px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  font-size: 12px;
-  color: var(--text-secondary);
+/* Live Status Strip */
+.telemetry-strip {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
 }
 
-.status-dot {
-  width: 8px;
-  height: 8px;
+.pulse-indicator {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: var(--accent-green);
+  background: var(--accent-emerald);
+  box-shadow: 0 0 8px var(--accent-emerald);
+  animation: radarPulse 2s infinite ease-in-out;
 }
 
-.status-dot.warning {
-  background: var(--accent-amber);
-}
-
-.status-dot.error {
-  background: var(--accent-red);
+@keyframes radarPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
 }

@@ -1,8 +1,8 @@
 /**
- * Enterprise Zero Trust Management Console (Stage 5)
- * Authentic Fortune-500 cloud portal with telemetry session audit.
+ * Executive Command Operations Center (Stage 4)
+ * High-tech operations dashboard with session flight recorder telemetry.
  */
-class EnterpriseConsole {
+class ExecutiveCommandCenter {
   constructor(containerEl) {
     this.container = containerEl;
     this.render();
@@ -10,10 +10,10 @@ class EnterpriseConsole {
 
   render() {
     const state = window.vaultState || {
-      startTime: Date.now() - 38000,
-      dodgeCount: 5,
-      missedClicks: 4,
-      mouseDistance: 3200
+      startTime: Date.now() - 32000,
+      mouseDistance: 2840,
+      peakSpeed: 520,
+      dodgeCount: 6
     };
 
     const timeSec = Math.max(10, Math.floor((Date.now() - state.startTime) / 1000));
@@ -22,109 +22,120 @@ class EnterpriseConsole {
     const timeFormatted = `${mins > 0 ? mins + 'm ' : ''}${secs}s`;
 
     this.container.innerHTML = `
-      <div class="console-wrapper">
-        <div class="console-header-row">
+      <div class="operations-center">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 14px;">
           <div>
-            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-tertiary); margin-bottom: 2px;">
-              Session Token: #AUTH-9924-FIPS-SEC
+            <div style="font-size: 10px; font-family: var(--font-mono); color: var(--accent-cyan); letter-spacing: 0.5px;">
+              LEVEL-5 EXECUTIVE ACCESS GRANTED
             </div>
-            <div style="font-size: 16px; font-weight: 700; color: var(--text-primary);">
-              Zero Trust Cloud Console
-            </div>
+            <h2 style="font-size: 18px; font-weight: 800; color: #fff; margin-top: 2px;">
+              Operations Command Terminal
+            </h2>
           </div>
-          <div class="gateway-status-pill">
-            <span style="font-size: 8px;">●</span> OPERATIONAL
-          </div>
-        </div>
-
-        <!-- Session Telemetry Audit Report -->
-        <div>
-          <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-secondary); margin-bottom: 10px;">
-            Identity & Access Audit Telemetry
-          </div>
-          <div class="audit-telemetry-grid">
-            <div class="telemetry-tile">
-              <div class="telemetry-tile-val">${timeFormatted}</div>
-              <div class="telemetry-tile-lbl">Authentication Time Elapsed</div>
-            </div>
-            <div class="telemetry-tile">
-              <div class="telemetry-tile-val">${state.dodgeCount}</div>
-              <div class="telemetry-tile-lbl">Anti-Bot Relocations Encountered</div>
-            </div>
-            <div class="telemetry-tile">
-              <div class="telemetry-tile-val">${state.missedClicks}</div>
-              <div class="telemetry-tile-lbl">Pointer Discrepancies (Misses)</div>
-            </div>
-            <div class="telemetry-tile">
-              <div class="telemetry-tile-val">${Math.round(state.mouseDistance)} px</div>
-              <div class="telemetry-tile-lbl">Cursor Traversal Mileage</div>
-            </div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-emerald); background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); padding: 4px 10px; border-radius: 20px;">
+            ● 48 ENCLAVES ONLINE
           </div>
         </div>
 
-        <!-- Enterprise Workload Controls -->
+        <!-- Telemetry Flight Recorder -->
         <div>
-          <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-secondary); margin-bottom: 10px;">
-            Authorized Infrastructure Controls
+          <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px;">
+            Operator Telemetry Flight Recorder
           </div>
-          <div class="console-controls-grid">
-            <div class="console-btn-tile" id="tile-jira">
-              <div class="console-btn-title">JIRA Cloud Sync</div>
-              <div class="console-btn-sub">1,492 unresolved backlog tickets</div>
+          <div class="flight-recorder-grid">
+            <div class="flight-tile">
+              <div class="flight-val">${timeFormatted}</div>
+              <div class="flight-lbl">Authentication Time Elapsed</div>
+            </div>
+            <div class="flight-tile">
+              <div class="flight-val">${Math.round(state.mouseDistance)} px</div>
+              <div class="flight-lbl">Cursor Mileage Traveled</div>
+            </div>
+            <div class="flight-tile">
+              <div class="flight-val">${state.peakSpeed || 480} px/s</div>
+              <div class="flight-lbl">Peak Pointer Velocity</div>
+            </div>
+            <div class="flight-tile">
+              <div class="flight-val">0.00%</div>
+              <div class="flight-lbl">Synthetic Bot Probability</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- High-Tech Operations Controls -->
+        <div>
+          <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px;">
+            Infrastructure Control Nodes
+          </div>
+          <div class="system-node-grid">
+            <div class="node-card" id="btn-jira">
+              <div class="node-title">
+                <span>JIRA Backlog Node</span>
+                <span style="color: var(--accent-cyan); font-family: var(--font-mono);">1,492 BUGS</span>
+              </div>
+              <div class="node-sub">Sync sprint workload items</div>
             </div>
 
-            <div class="console-btn-tile" id="tile-coffee">
-              <div class="console-btn-title">Espresso Pressure API</div>
-              <div class="console-btn-sub">Boiler Status: <span id="bar-val">15.2</span> BAR</div>
+            <div class="node-card" id="btn-hvac">
+              <div class="node-title">
+                <span>HQ Climate Mesh</span>
+                <span style="color: var(--accent-amber); font-family: var(--font-mono);">21.5°C</span>
+              </div>
+              <div class="node-sub">Thermostat governance locked</div>
             </div>
 
-            <div class="console-btn-tile" id="tile-thermostat">
-              <div class="console-btn-title">HQ HVAC Override</div>
-              <div class="console-btn-sub">Thermostat locked at 21.5°C</div>
+            <div class="node-card" id="btn-coffee">
+              <div class="node-title">
+                <span>Espresso Barometer</span>
+                <span style="color: var(--accent-emerald); font-family: var(--font-mono);">15.2 BAR</span>
+              </div>
+              <div class="node-sub">Boiler telemetry nominal</div>
             </div>
 
-            <div class="console-btn-tile" id="tile-logout" style="border-color: rgba(239, 68, 68, 0.3);">
-              <div class="console-btn-title" style="color: #ef4444;">Revoke Session</div>
-              <div class="console-btn-sub">Immediate re-authentication required</div>
+            <div class="node-card" id="btn-revoke" style="border-color: rgba(239, 68, 68, 0.3);">
+              <div class="node-title" style="color: var(--accent-rose);">
+                <span>Revoke Session</span>
+                <span style="font-family: var(--font-mono);">EXIT</span>
+              </div>
+              <div class="node-sub">Requires full re-authentication</div>
             </div>
           </div>
         </div>
       </div>
     `;
 
-    this.initConsoleActions();
+    this.initActions();
   }
 
-  initConsoleActions() {
-    const jira = document.getElementById('tile-jira');
+  initActions() {
+    const jira = document.getElementById('btn-jira');
     if (jira) {
       jira.addEventListener('click', () => {
         if (window.soundEngine) window.soundEngine.click();
-        alert("JIRA sync initiated: 48 new emergency bugs assigned to your sprint backlog.");
+        alert("JIRA sync complete: 62 urgent critical severity tickets allocated.");
       });
     }
 
-    const coffee = document.getElementById('tile-coffee');
+    const hvac = document.getElementById('btn-hvac');
+    if (hvac) {
+      hvac.addEventListener('click', () => {
+        if (window.soundEngine) window.soundEngine.click();
+        alert("HVAC Override: Facilities management alerted of unauthorized temperature adjustment.");
+      });
+    }
+
+    const coffee = document.getElementById('btn-coffee');
     if (coffee) {
       coffee.addEventListener('click', () => {
         if (window.soundEngine) window.soundEngine.relocate();
-        const el = document.getElementById('bar-val');
-        if (el) el.innerText = (14.0 + Math.random() * 2).toFixed(1);
+        alert("Espresso steam valve purged. Internal pressure stabilized.");
       });
     }
 
-    const thermo = document.getElementById('tile-thermostat');
-    if (thermo) {
-      thermo.addEventListener('click', () => {
-        if (window.soundEngine) window.soundEngine.click();
-        alert("HVAC Alert: Temperature adjusted by 0.5°C. Facilities management notified.");
-      });
-    }
-
-    const logout = document.getElementById('tile-logout');
-    if (logout) {
-      logout.addEventListener('click', () => {
-        if (confirm("Are you certain you wish to terminate this session? You will be required to re-authenticate all FIPS compliance stages.")) {
+    const revoke = document.getElementById('btn-revoke');
+    if (revoke) {
+      revoke.addEventListener('click', () => {
+        if (confirm("Terminate Level-5 Executive Session? All vector physics and cipher stages must be re-solved.")) {
           location.reload();
         }
       });
@@ -132,4 +143,4 @@ class EnterpriseConsole {
   }
 }
 
-window.EnterpriseConsole = EnterpriseConsole;
+window.ExecutiveCommandCenter = ExecutiveCommandCenter;

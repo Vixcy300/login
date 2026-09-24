@@ -1,35 +1,36 @@
-# Global Enterprise Access Gateway 🛡️
-### Zero Trust Identity & Access Management (FIPS 140-3 Compliant)
+# Zero Trust Cyber-Physical Gateway 🛡️
+### Linear / Palantir-Grade Kinetic Authentication Enclave (FIPS 140-3 Compliant)
 
-An ultra-realistic, Fortune-500 grade corporate Zero Trust authentication portal inspired by **Okta, Microsoft Entra ID (Azure AD), and Cloudflare Access**. 
-
-Disguised behind its strict SOC-2 Type II enterprise security compliance policies lies an infuriating, comedic, and 100% beatable rage-bait authentication gauntlet.
+An ultra-modern, bespoke cybersecurity authentication portal featuring **real-time 60 FPS vector physics**, continuous cursor telemetry HUD, and interactive cryptographic puzzles.
 
 ---
 
-## 🏛️ Enterprise Security Pipeline
+## ⚡ Kinetic Architecture & Interaction Design
 
-1. **Stage 1: Enterprise SSO & Dynamic Anti-Automation Defense**
-   - Managed Work Email & Corporate Password.
-   - FIPS 140-3 Password Compliance Checklist (14+ characters, mixed case, min 2 digits, checksum sum = 21, approved corporate symbols `#`, `$`, `&`, `_`).
-   - Anti-Automation Target Relocation: Relocates authentication target on cursor approach to counter automated click-fraud before locking into place.
-2. **Stage 2: Multi-Factor Authentication & FIDO2 WebAuthn**
-   - Ephemeral 6-digit cryptographic TOTP token with a rapid 8-second rotation cycle.
-   - Alternative FIDO2 hardware sensor requiring a sustained 3.0-second hold.
-3. **Stage 3: CrowdStrike / Sentinel Endpoint Posture & Motor Calibration**
-   - Micro-reflex pointer calibration ensuring 0.00% synthetic bot emulation.
-4. **Stage 4: Enterprise NDA & Data Governance Attestation**
-   - Corporate Data Governance terms with automated speed-reading violation detection.
-   - Division cost-center clearance inquest.
-5. **Stage 5: Zero Trust Cloud Management Console**
-   - Real-time identity & session audit report.
-   - Authorized infrastructure controls (JIRA backlog sync, HVAC overrides, Espresso pressure monitoring).
+1. **Ambient Cursor Spotlight & Telemetry HUD**
+   - Live pointer coordinate streaming `[X, Y]`.
+   - Real-time Pointer Velocity Speedometer (`px/s`).
+   - Active magnetic repulsion force sensor.
+2. **Stage 1: 60 FPS Magnetic Repulsion SSO**
+   - Real continuous vector physics button that repels dynamically from the cursor based on distance and acceleration ($F \propto 1/d^2$).
+   - **Thruster Heat-Sink Mechanic**: Rapid evasions overheat the magnetic core from `0%` to `100%`. At 100%, the thrusters overheat and disengage for 5.0 seconds, allowing authentication!
+   - Real-time native Web Crypto SHA-256 live hash generation.
+   - FIPS 140-3 21-sum digit checksum validation.
+3. **Stage 2: Optical Laser Sweep Waveform Calibration**
+   - Drag an optical laser sensor head across an encrypted waveform.
+   - Governed by an active velocity limiter: drag speed must remain between **60 px/s and 160 px/s** to prevent optical blur.
+4. **Stage 3: Quantum Node Topology Cipher Matrix**
+   - Interactive 3x3 canvas node array.
+   - Route neon laser beam connections through the specified cryptographic key sequence (`1 → 5 → 9 → 6`).
+5. **Stage 4: Executive Command Operations Center**
+   - Full session telemetry flight recorder (authentication time, cursor mileage, peak velocity, synthetic bot probability).
+   - Live infrastructure node controls.
 
 ---
 
 ## 🚀 Deployment
 
-Optimized for instant zero-config deployment on **Vercel**, Netlify, or any static hosting platform.
+Zero-configuration deployment on **Vercel**, Netlify, or static web servers.
 
 ### Local Development
 ```bash
@@ -37,6 +38,6 @@ node serve.js
 # Or open index.html directly in any modern browser
 ```
 
-### Administrative Exemption
+### Administrative Override
 - Keyboard: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>\</kbd>
-- Pointer: Click the brand shield mark 5 times.
+- Pointer: Click brand icon 5 times.

@@ -3,100 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enterprise Access Gateway | Zero Trust Authentication</title>
+  <title>Zero Trust Gateway | Cyber-Physical Authentication</title>
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/components.css">
   <link rel="stylesheet" href="styles/steps.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%232563eb%22 stroke-width=%222%22><path d=%22M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z%22/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2338bdf8%22 stroke-width=%222%22><path d=%22M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z%22/></svg>">
 </head>
 <body>
 
-  <!-- Administrative Override Notice -->
-  <div id="security-alert-banner" class="security-alert-banner"></div>
+  <!-- Ambient Cursor-Following Spotlight -->
+  <div class="ambient-glow"></div>
 
-  <!-- Enterprise Header -->
-  <header class="enterprise-header">
-    <div class="brand-identity" id="brand-logo-mark" title="Global Security Gateway (Internal Telemetry: Click 5x for Admin Bypass)">
-      <div class="brand-logo-mark">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Real-Time Cursor Telemetry HUD Bar -->
+  <aside class="hud-telemetry-bar">
+    <div class="hud-item">
+      <span>CURSOR_COORDINATES:</span>
+      <span class="hud-val" id="hud-coords">X:0 Y:0</span>
+    </div>
+    <div class="hud-item">
+      <span>VELOCITY_SPEEDOMETER:</span>
+      <span class="hud-val" id="hud-speed">0 px/s</span>
+    </div>
+    <div class="hud-item">
+      <span>REPULSION_FIELD:</span>
+      <span class="hud-val" id="hud-field">0%</span>
+    </div>
+    <div class="hud-item">
+      <span>SYSTEM_STATUS:</span>
+      <span class="hud-val" id="hud-status">ENCLAVE SECURE</span>
+    </div>
+  </aside>
+
+  <!-- Main Navigation Header -->
+  <header class="portal-header">
+    <div class="brand-wrapper" id="brand-logo-mark" title="Zero Trust Access Controller (Click 5x for Developer Override)">
+      <div class="brand-icon-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="M9 12l2 2 4-4"/>
         </svg>
       </div>
-      <div class="brand-text-lockup">
-        <div class="brand-name">Global Enterprise Gateway</div>
-        <div class="brand-subtext">Zero Trust Access Controller</div>
+      <div class="brand-title-wrap">
+        <div class="brand-title">Zero Trust Access Gateway</div>
+        <div class="brand-sub">Kinetic Cyber-Physical Enclave v9.4</div>
       </div>
     </div>
 
-    <div class="header-meta-group">
-      <div class="compliance-badges">
-        <span class="compliance-tag">SOC 2 Type II</span>
-        <span class="compliance-tag">FIPS 140-3</span>
-      </div>
-      <button type="button" class="control-btn" id="audio-toggle-btn">
+    <div class="header-tools">
+      <span class="badge-compliance">FIPS 140-3 LEVEL 4</span>
+      <button type="button" class="btn-icon" id="audio-toggle-btn">
         System Audio
       </button>
     </div>
   </header>
 
-  <!-- Main Container -->
-  <main class="main-wrapper">
+  <!-- Main Gateway Stage Container -->
+  <main class="gateway-main">
 
-    <!-- Zero Trust Pipeline Stages -->
-    <div class="pipeline-indicator" aria-label="Authentication Pipeline">
-      <div class="pipeline-step active" id="pipe-step-1">
-        <div class="step-number">1</div>
-        <span>Identity</span>
+    <!-- Stage Flow Indicator -->
+    <nav class="flow-tracker" aria-label="Authentication Flow">
+      <div class="flow-step active" id="flow-step-1">
+        <div class="flow-step-dot">1</div>
+        <span>Magnetic SSO</span>
       </div>
-      <div class="pipeline-separator"></div>
-      <div class="pipeline-step" id="pipe-step-2">
-        <div class="step-number">2</div>
-        <span>MFA</span>
+      <div class="flow-line"></div>
+      <div class="flow-step" id="flow-step-2">
+        <div class="flow-step-dot">2</div>
+        <span>Laser Sweep</span>
       </div>
-      <div class="pipeline-separator"></div>
-      <div class="pipeline-step" id="pipe-step-3">
-        <div class="step-number">3</div>
-        <span>Posture</span>
+      <div class="flow-line"></div>
+      <div class="flow-step" id="flow-step-3">
+        <div class="flow-step-dot">3</div>
+        <span>Node Cipher</span>
       </div>
-      <div class="pipeline-separator"></div>
-      <div class="pipeline-step" id="pipe-step-4">
-        <div class="step-number">4</div>
-        <span>Governance</span>
+      <div class="flow-line"></div>
+      <div class="flow-step" id="flow-step-4">
+        <div class="flow-step-dot">4</div>
+        <span>Operations</span>
       </div>
-      <div class="pipeline-separator"></div>
-      <div class="pipeline-step" id="pipe-step-5">
-        <div class="step-number">5</div>
-        <span>Clearance</span>
-      </div>
-    </div>
+    </nav>
 
     <!-- Active Card Surface -->
-    <div class="enterprise-card" id="step-content-area">
-      <!-- Injected dynamically by app.js -->
+    <div class="cyber-card" id="step-content-area">
+      <!-- Steps rendered dynamically by app.js -->
     </div>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="enterprise-footer">
-    <div class="footer-links">
-      <a href="#" onclick="return false;">Corporate Security Policy</a>
-      <a href="#" onclick="return false;">Acceptable Use Standards</a>
-      <a href="#" onclick="return false;">Helpdesk Support</a>
-    </div>
-    <div>Protected by Zero Trust Cryptographic Enclaves • All Rights Reserved © 2026 Enterprise Corp.</div>
-    <div style="font-size: 11px; opacity: 0.6; margin-top: 2px;">
-      Administrative testing shortcut: Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>\</kbd> or click the logo 5x.
+  <!-- Footer Notice -->
+  <footer class="portal-footer">
+    <div>Protected by Quantum Kinetic Guardrails • 256-bit Cryptographic Vector Analysis</div>
+    <div class="admin-hint">
+      Developer Shortcut: Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>\</kbd> or click the brand logo 5x for bypass.
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="js/sound.js"></script>
-  <script src="js/runaway.js"></script>
+  <script src="js/physics.js"></script>
   <script src="js/password.js"></script>
-  <script src="js/mfa.js"></script>
-  <script src="js/posture.js"></script>
-  <script src="js/governance.js"></script>
+  <script src="js/laser.js"></script>
+  <script src="js/matrix.js"></script>
   <script src="js/dashboard.js"></script>
   <script src="js/app.js"></script>
 </body>

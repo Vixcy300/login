@@ -1,11 +1,11 @@
 /**
- * Enterprise Password Compliance Engine (FIPS 140-3 Standard)
- * Clean checklist UI with real-time checksum evaluation.
+ * Enterprise Cryptographic Password Compliance & SHA-256 Hash Visualizer
  */
 class PasswordCompliance {
-  constructor(inputEl, checklistContainerEl, onComplianceMet) {
+  constructor(inputEl, checklistContainerEl, hashDisplayEl, onComplianceMet) {
     this.input = inputEl;
     this.container = checklistContainerEl;
+    this.hashDisplay = hashDisplayEl;
     this.onComplianceMet = onComplianceMet;
 
     this.rules = [
@@ -30,7 +30,7 @@ class PasswordCompliance {
         getDynamicLabel: (pw) => {
           const digits = (pw.match(/\d/g) || []).map(Number);
           const sum = digits.reduce((a, b) => a + b, 0);
-          return `FIPS 140-3 Checksum: Sum of digits must equal 21 (Current: ${sum})`;
+          return `FIPS Checksum: Digits sum must equal 21 (Current: ${sum})`;
         },
         check: (pw) => {
           const digits = (pw.match(/\d/g) || []).map(Number);
@@ -50,14 +50,37 @@ class PasswordCompliance {
 
   init() {
     this.render();
-    this.input.addEventListener('input', () => this.validate());
+    this.input.addEventListener('input', () => {
+      this.validate();
+      this.updateLiveHash();
+    });
+    this.updateLiveHash();
+  }
+
+  async updateLiveHash() {
+    if (!this.hashDisplay) return;
+    const pw = this.input.value;
+    if (!pw) {
+      this.hashDisplay.innerText = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 (empty)';
+      return;
+    }
+
+    try {
+      const msgBuffer = new TextEncoder().encode(pw);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      this.hashDisplay.innerText = hashHex;
+    } catch (e) {
+      this.hashDisplay.innerText = 'SHA-256 Engine Active';
+    }
   }
 
   render() {
     this.container.innerHTML = `
-      <div class="checklist-header">
-        <span>Corporate Policy Requirements</span>
-        <span>Standard ISO-27001</span>
+      <div style="display: flex; justify-content: space-between; font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); margin-bottom: 8px;">
+        <span>POLICY COMPLIANCE REQUIREMENTS</span>
+        <span>STANDARD FIPS 140-3</span>
       </div>
     `;
 
@@ -67,9 +90,14 @@ class PasswordCompliance {
       const labelText = rule.getDynamicLabel ? rule.getDynamicLabel(pw) : rule.label;
 
       const item = document.createElement('div');
-      item.className = `checklist-item ${isValid ? 'valid' : 'invalid'}`;
+      item.style.display = 'flex';
+      item.style.alignItems = 'center';
+      item.style.gap = '8px';
+      item.style.fontSize = '12px';
+      item.style.color = isValid ? 'var(--accent-emerald)' : 'var(--text-dim)';
+      item.style.marginBottom = '6px';
       item.innerHTML = `
-        <span class="checklist-icon">${isValid ? '●' : '○'}</span>
+        <span style="font-family: var(--font-mono);">${isValid ? '✓' : '○'}</span>
         <span>${labelText}</span>
       `;
       this.container.appendChild(item);
@@ -79,7 +107,6 @@ class PasswordCompliance {
   validate() {
     const pw = this.input.value;
     const isNowValid = this.rules.every(r => r.check(pw));
-
     this.render();
 
     if (isNowValid && !this.allValid) {
@@ -97,7 +124,6 @@ class PasswordCompliance {
   }
 
   suggestCompliantPassword() {
-    // 14+ chars, upper, lower, digits summing to 21 (e.g., 9+8+4 = 21), symbol #
     return 'Corporate984#Security';
   }
 }

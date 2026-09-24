@@ -1,378 +1,291 @@
 /* ==========================================================================
-   STAGE 1: ENTERPRISE SSO & PASSWORD COMPLIANCE
+   STAGE 1: 60FPS MAGNETIC REPULSION ARENA & THRUSTER HEAT-SINK
    ========================================================================== */
-.compliance-checklist {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 14px 16px;
-  margin-bottom: 22px;
+.magnetic-arena {
+  width: 100%;
+  height: 160px;
+  background: radial-gradient(circle at center, rgba(37, 99, 235, 0.04) 0%, rgba(3, 7, 18, 0.6) 80%);
+  border: 1px solid var(--border-glow);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 14px;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6);
 }
 
-.checklist-header {
+.magnetic-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  min-width: 250px;
+  z-index: 20;
+  will-change: transform;
+}
+
+.magnetic-btn.overheated {
+  background: linear-gradient(135deg, #f59e0b, #ef4444) !important;
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.6) !important;
+  animation: overheatPulse 0.8s infinite alternate !important;
+}
+
+@keyframes overheatPulse {
+  0% { transform: scale(1); filter: brightness(1); }
+  100% { transform: scale(1.04); filter: brightness(1.2); }
+}
+
+/* Thruster Heat-Sink Meter */
+.heat-sink-container {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.heat-sink-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-size: 11px;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--text-tertiary);
-  margin-bottom: 6px;
 }
 
-.checklist-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
-  color: var(--text-secondary);
-  transition: color 0.15s ease;
-}
-
-.checklist-item.valid {
-  color: var(--accent-green);
-}
-
-.checklist-item.invalid {
-  color: var(--text-tertiary);
-}
-
-.checklist-icon {
-  width: 14px;
-  height: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-}
-
-/* Anti-Automation Target Area */
-.anti-bot-container {
+.heat-sink-track {
   width: 100%;
-  min-height: 130px;
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px dashed var(--border-subtle);
-  border-radius: 8px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 3px;
   overflow: hidden;
-  margin-top: 10px;
-  padding: 12px;
 }
 
-.anti-bot-btn {
-  position: relative;
-  z-index: 10;
-  width: auto;
-  min-width: 240px;
-  transition: all 0.15s cubic-bezier(0.2, 0.8, 0.4, 1);
+.heat-sink-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #38bdf8, #f59e0b, #ef4444);
+  transition: width 0.15s ease;
 }
 
-.anti-bot-btn.anchored {
-  background: var(--accent-green) !important;
-  border-color: var(--accent-green) !important;
-}
-
-.audit-notice {
+.heat-status-notice {
+  font-family: var(--font-mono);
   font-size: 11px;
   color: var(--accent-amber);
-  margin-top: 8px;
-  text-align: center;
   min-height: 16px;
-}
-
-/* ==========================================================================
-   STAGE 2: RAPID-ROTATION TOTP & FIDO2 SENSOR
-   ========================================================================== */
-.totp-container {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.auth-method-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 16px;
-}
-
-.totp-input-row {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin: 16px 0 10px 0;
-}
-
-.totp-digit-box {
-  width: 44px;
-  height: 52px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-strong);
-  border-radius: 6px;
-  font-size: 24px;
-  font-weight: 700;
-  font-family: var(--font-mono);
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: border-color 0.15s ease;
-}
-
-.totp-digit-box.active {
-  border-color: var(--accent-blue);
-  box-shadow: 0 0 0 1px var(--accent-blue);
-}
-
-.rotation-timer-bar {
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 2px;
-  overflow: hidden;
+  text-align: center;
   margin-top: 6px;
 }
 
-.rotation-timer-fill {
-  height: 100%;
-  width: 100%;
-  background: var(--accent-blue);
-  transition: width 0.1s linear;
-}
-
-.fido-sensor-area {
+/* ==========================================================================
+   STAGE 2: OPTICAL LASER SWEEP CALIBRATION
+   ========================================================================== */
+.laser-calibration-box {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  padding: 20px 0;
+  gap: 16px;
 }
 
-.fido-touch-pad {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: var(--bg-surface);
-  border: 2px solid var(--border-strong);
+.tachometer-display {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 12px 16px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.2s ease;
+  font-family: var(--font-mono);
+}
+
+.tacho-val {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+.tacho-zone {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--accent-emerald);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.tacho-zone.danger {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--accent-rose);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* Optical Laser Waveform Track */
+.laser-track {
+  width: 100%;
+  height: 64px;
+  background: #060b17;
+  border: 1px solid var(--border-glow);
+  border-radius: 8px;
   position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
 }
 
-.fido-touch-pad:active, .fido-touch-pad.holding {
-  border-color: var(--accent-blue);
-  background: rgba(37, 99, 235, 0.15);
-  box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
-}
-
-.fido-progress-ring {
+.waveform-canvas {
   position: absolute;
-  top: -4px;
-  left: -4px;
-  width: 76px;
-  height: 76px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
 }
 
+.laser-slider-thumb {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 44px;
+  height: 54px;
+  background: linear-gradient(180deg, #38bdf8, #2563eb);
+  border: 1px solid #7dd3fc;
+  border-radius: 6px;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.6);
+  user-select: none;
+  touch-action: none;
+  z-index: 10;
+}
+
+.laser-slider-thumb:active {
+  cursor: grabbing;
+}
+
+.laser-beam-indicator {
+  width: 2px;
+  height: 36px;
+  background: #fff;
+  box-shadow: 0 0 8px #fff, 0 0 16px #38bdf8;
+}
+
 /* ==========================================================================
-   STAGE 3: DEVICE POSTURE & MOTOR REFLEX CALIBRATION
+   STAGE 3: QUANTUM NODE CIPHER MATRIX
    ========================================================================== */
-.posture-wrapper {
+.matrix-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
 }
 
-.calibration-canvas-zone {
-  width: 320px;
-  height: 220px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+.reference-cipher-card {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px dashed var(--border-subtle);
   border-radius: 8px;
-  position: relative;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.cipher-node-sequence {
+  display: flex;
+  gap: 8px;
+}
+
+.cipher-pill {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid var(--accent-cyan);
+  color: var(--accent-cyan);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.node-matrix-canvas {
+  background: #040814;
+  border: 1px solid var(--border-glow);
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(0, 0, 0, 0.8);
   cursor: crosshair;
 }
 
-.calibration-target-box {
-  width: 56px;
-  height: 56px;
-  border: 1px dashed var(--accent-blue);
-  border-radius: 8px;
-  background: rgba(37, 99, 235, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.15s ease, border-color 0.15s ease;
-}
-
-.calibration-target-box.active {
-  background: rgba(16, 185, 129, 0.15);
-  border-color: var(--accent-green);
-  border-style: solid;
-}
-
-.hold-meter-bar {
-  width: 100%;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-top: 8px;
-}
-
-.hold-meter-fill {
-  height: 100%;
-  width: 0%;
-  background: var(--accent-green);
-  transition: width 0.05s linear;
-}
-
 /* ==========================================================================
-   STAGE 4: ENTERPRISE NDA & DATA GOVERNANCE
+   STAGE 4: EXECUTIVE OPERATIONS CENTER (FINAL)
    ========================================================================== */
-.governance-text-scroll {
-  height: 180px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  padding: 14px 16px;
-  overflow-y: scroll;
-  font-size: 12px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin-bottom: 16px;
-}
-
-.governance-text-scroll h4 {
-  color: var(--text-primary);
-  font-size: 12px;
-  font-weight: 600;
-  margin: 12px 0 4px 0;
-}
-
-.governance-text-scroll p {
-  margin-bottom: 8px;
-}
-
-.compliance-checkbox-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 18px;
-}
-
-.compliance-checkbox-row input {
-  margin-top: 2px;
-  accent-color: var(--accent-blue);
-}
-
-.compliance-checkbox-label {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.4;
-  cursor: pointer;
-}
-
-/* ==========================================================================
-   STAGE 5: ZERO TRUST MANAGEMENT CONSOLE (FINAL)
-   ========================================================================== */
-.console-wrapper {
+.operations-center {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.console-header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 14px;
-}
-
-.gateway-status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--accent-green);
-  background: rgba(16, 185, 129, 0.1);
-  padding: 4px 10px;
-  border-radius: 20px;
-}
-
-.audit-telemetry-grid {
+.flight-recorder-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
 
-.telemetry-tile {
-  background: var(--bg-card);
+.flight-tile {
+  background: rgba(3, 7, 18, 0.6);
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
   padding: 12px 14px;
-}
-
-.telemetry-tile-val {
-  font-size: 18px;
-  font-weight: 700;
   font-family: var(--font-mono);
-  color: var(--text-primary);
 }
 
-.telemetry-tile-lbl {
-  font-size: 11px;
-  color: var(--text-tertiary);
-  margin-top: 2px;
+.flight-val {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
 }
 
-.console-controls-grid {
+.flight-lbl {
+  font-size: 10px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.system-node-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
 
-.console-btn-tile {
-  background: var(--bg-card);
+.node-card {
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
   padding: 12px;
-  text-align: left;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
-.console-btn-tile:hover {
-  background: var(--bg-card-subtle);
+.node-card:hover {
+  background: rgba(255, 255, 255, 0.05);
   border-color: var(--border-strong);
 }
 
-.console-btn-title {
+.node-title {
   font-size: 12px;
   font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 2px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
 }
 
-.console-btn-sub {
+.node-sub {
   font-size: 11px;
-  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+  margin-top: 4px;
 }
